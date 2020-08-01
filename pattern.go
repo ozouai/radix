@@ -257,7 +257,11 @@ func lookup(n *pnode, s string) *pnode {
 			}
 		}
 		// try '*'
-		return lookup(n.wcard, s)
+		wildcard := lookup(n.wcard, s)
+		if wildcard != nil {
+			return wildcard
+		}
+		return n
 	default:
 		return nil
 	}
